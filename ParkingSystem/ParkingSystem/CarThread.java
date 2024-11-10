@@ -2,11 +2,11 @@ package ParkingSystem;
 
 public class CarThread extends Thread {
     protected int carID;
-    protected Gate gate;
+    protected ParkingSystem.Gate gate;
     protected int arrivalTime;
     protected int parkingTime;
-    protected Semaphore semaphore;
-    CarThread(int carID, Gate gate, int arrivalTime, int parkingTime, Semaphore semaphore){
+    protected ParkingSystem.Semaphore semaphore;
+    CarThread(int carID, ParkingSystem.Gate gate, int arrivalTime, int parkingTime, ParkingSystem.Semaphore semaphore){
         this.carID = carID;
         this.gate = gate;
         this.arrivalTime = arrivalTime;
@@ -24,7 +24,7 @@ public class CarThread extends Thread {
             String log = "Car " + carID + " from Gate " + gate.getNum() + " arrived at time " + arrivalTime;
             // if waiting
             if (semaphore.getAvailable() == 0){
-                log += "Car " + carID + " from Gate " + gate.getNum() + " waiting for a spot.";
+                log += "\nCar " + carID + " from Gate " + gate.getNum() + " waiting for a spot.";
                 printLog(log);
                 double startTime = (double)System.nanoTime();
                 semaphore.P();
